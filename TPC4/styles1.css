@@ -1,0 +1,162 @@
+*{
+    box-sizing : border-box;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.corpo {
+    width: 100vw;
+    height: 100vh;
+    background-color: #333;
+}
+
+.inicio{
+    height: 70vh;
+    background-color: #d6d6d6;
+}
+.inicio h1{
+    text-align: center;
+    font-size: 3rem;
+    font-family: "Volkhov", serif;
+    padding: 3rem;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.content {
+    width: 22%;
+    min-width: 130px;
+    margin: 0.5rem;
+    padding: 10px;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.116);
+}
+
+.content:hover {
+    transition: 0.3s;
+    background-color: #333;
+    color: white;
+}
+
+.content:active{
+    transition: 0.1s;
+    background-color: hsla(0, 0%, 20%, 0.656);
+}
+
+.imagens {
+    aspect-ratio: 6/5;
+}
+
+.imagens img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.hobby {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+.descricao_pagina{
+    margin-top: 3rem;
+    color: white;
+    text-align: center;
+}
+
+
+/*Segundas Páginas*/
+/*Música*/
+#descricao_musica {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    background-color: #333;
+    justify-content: space-between;
+
+}
+
+.imagem {
+    height: 100%;
+    width: 28%;
+    background-position: center;
+    background-size: cover;
+}
+
+#teatro {
+    background-image: url(imagens\\teatro.jpg);
+}
+
+.texto {
+    width: 40%;
+    background-position: center;
+    background-size: cover;
+    padding: 2rem;
+    color: white;
+}
+
+#festival {
+    background-image: url(imagens\\festival.jpg);
+}
+
+/*Desporto*/
+#descricao_desporto {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    background-color: #333;
+    justify-content: space-between;
+}
+
+#surf {
+    background-image: url(imagens\\surf.jpg);
+}
+
+#hiking {
+    background-image: url(imagens\\hiking.png);
+}
+/*lacos*/
+#descricao_lacos {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    background-color: #333;
+    justify-content: space-between;
+}
+
+#amigos {
+    background-image: url(imagens\\amigos.jpg);
+}
+
+
+#familia {
+    background-image: url(imagens\\familia.jpg);
+    background-position: left;
+
+}
+
+/*knowledge*/
+#descricao_knowledge {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    background-color: #333;
+    justify-content: space-between;
+}
+
+#books {
+    background-image: url(imagens\\books.jpg);
+}
+
+#uminho {
+    background-image: url(imagens\\uminho.jpg);
+}

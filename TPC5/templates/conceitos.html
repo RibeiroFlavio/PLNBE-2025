@@ -1,0 +1,17 @@
+{%extends 'layout.html' %}
+
+    {% block head%}
+<title>{{title}}</title>
+    {%endblock%}
+
+    {%block body%}
+    <ul>
+
+            {% for conceito in conceitos%}
+        <li>
+            <a href="/conceitos/{{conceito}}" target="_blank">{{conceito}}</a>
+        </li>
+        {%endfor%}
+    </ul>
+    {%endblock%}
+

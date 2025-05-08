@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+
+<title> Tabela </title>
+
+    <style>
+
+    #tabela_conceitos thead {
+    background-color: #1e56d0;
+    color: #ffc400;
+}
+    #tabela_conceitos {
+    background-color: rgba(5, 248, 225, 0.85);
+    color: #ff0000;
+}
+    #tabela_conceitos td, #tabela_conceitos th {
+    border: 1px solid #a708d5;
+    padding: 8px;
+}
+
+    #tabela_conceitos tbody tr:hover {
+    background-color: #13dc43;
+    cursor: pointer;
+}
+
+
+    </style>
+{% endblock %}
+
+{% block body %}
+
+<table id="tabela_conceitos" class="display">
+    <thead>
+        <tr>
+            <th>Conceito</th>
+            <th>Descricao</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for designacao, descricao in conceitos %}
+            <tr>
+                <td>{{ designacao}}</td>
+                <td>{{ descricao }}</td>
+            </tr>
+
+
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}
