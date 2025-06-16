@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>Resultados da Pesquisa</title>
+<style>
+  html, body {
+    background-color: #fae57a !important;
+    margin: 0;
+  }
+
+  .container {
+    padding-bottom: 3rem;
+  }
+
+  .card {
+    background-color: #f8cded !important;  /* pastel rosa-avermelhado */
+    border: 1px solid #030305 !important;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card-title a {
+    color: #78ff71 !important;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .card-title a:hover {
+    text-decoration: underline;
+  }
+
+  .card-subtitle {
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .field-label {
+    color: #90abff;
+    font-weight: bold;
+  }
+
+  .context-label {
+    color: #fa7a89;
+    font-weight: bold;
+  }
+
+  .highlight {
+    font-weight: bold;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+  <h2 class="text-center mb-4" style="color: #000000;">Resultados da Pesquisa: "{{ query }}"</h2>
+
+  {% if conceitos %}
+    {% for conceito in conceitos %}
+      <div class="card">
+        <h5 class="card-title text-center">
+          <a href="/conceitos/{{ conceito['original'] | urlencode }}">{{ conceito['conceito'] | safe }}</a>
+        </h5>
+
+        {% if conceito.get("sinónimos pt") %}
+          <h6 class="card-subtitle text-center">{{ conceito["sinónimos pt"] | join(", ") }}</h6>
+        {% endif %}
+
+        {% if conceito.get("significado") %}
+          <p class="card-text"><span class="field-label">Definição:</span> {{ conceito["significado"] | safe }}</p>
+        {% endif %}
+
+        {% if conceito.get("significado_enciclopédico") %}
+          <p class="card-text"><span class="field-label">Definição Enciclopédica:</span> {{ conceito["significado_enciclopédico"] | safe }}</p>
+        {% endif %}
+
+        {% if conceito.get("contexto") %}
+          <p class="card-text"><span class="context-label">Contextualização:</span> {{ conceito["contexto"] | safe }}</p>
+        {% endif %}
+
+        {% if conceito.get("definicao catalã") %}
+          <p class="card-text"><span class="field-label">Definição Catalã:</span> {{ conceito["definicao catalã"] | safe }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="text-center">Nenhum conceito encontrado.</p>
+  {% endif %}
+</div>
+{% endblock %}

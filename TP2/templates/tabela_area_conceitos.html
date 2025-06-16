@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+
+<title> {{ area }} </title>
+
+    <style>
+
+
+    html, body {
+  min-height: 100%;
+  margin: 0;
+  background-color: #fae57a;
+  font-family: 'Segoe UI', sans-serif;
+}
+    #area_conceitos thead {
+    background-color: #ffafeb;
+    color: #78ff71;
+        text-shadow:
+      -1px -1px 0 #000,
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000;
+
+}
+    #area_conceitos {
+    background-color: #ffffff;
+    color: #000000;
+}
+    #area_conceitos td, #area_conceitos th {
+    border: 1px solid #94bfff;
+    padding: 8px;
+}
+
+    #area_conceitos tbody tr:hover {
+    background-color: #dbe8ff;
+    cursor: pointer;
+}
+
+
+    body {
+  background-color: #fae57a !important;
+}
+
+#area_conceitos a {
+  color: inherit !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+h2{
+
+  color: #78ff71;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
+
+
+
+
+
+    </style>
+{% endblock %}
+
+{% block body %}
+
+<h2 style="text-align: center; color: #78ff71; margin: 2rem 0;">Área Médica: {{ area }}</h2>
+
+<div style="padding: 0 2rem;">
+  <table id="area_conceitos" class="display">
+    <thead>
+        <tr>
+            <th>Conceito</th>
+
+            <th>Significado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in conceitos %}
+    <tr>
+      <td><a href="/conceitos/{{ item.conceito }}">{{ item.conceito }}</a></td>
+      
+      <td><a href="/conceitos/{{ item.conceito }}">{{ item.significado }}</a></td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+</table>
+</div>
+{% endblock %}

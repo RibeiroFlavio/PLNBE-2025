@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+
+<title> Tabela de Conceitos Gerais</title>
+
+    <style>
+
+
+    html, body {
+  min-height: 100%;
+  margin: 0;
+  background-color: #fae57a;
+  font-family: 'Segoe UI', sans-serif;
+}
+    #conceitos thead {
+    background-color: #ffafeb;
+    color: #78ff71;
+        text-shadow:
+      -1px -1px 0 #000,
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000;
+
+}
+    #conceitos {
+    background-color: #ffffff;
+    color: #000000;
+}
+    #conceitos td, #conceitos th {
+    border: 1px solid #94bfff;
+    padding: 8px;
+}
+
+    #conceitos tbody tr:hover {
+    background-color: #dbe8ff;
+    cursor: pointer;
+}
+
+
+    body {
+  background-color: #fae57a !important;
+}
+
+#conceitos a {
+  color: inherit !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+    </style>
+{% endblock %}
+
+{% block body %}
+<div style="padding: 0 2rem;">
+  <table id="conceitos" class="display">
+    <thead>
+        <tr>
+            <th>Conceito</th>
+            <th>Área Médica</th>
+            <th>Significado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in conceitos %}
+    <tr>
+      <td><a href="/conceitos/{{ item.conceito }}">{{ item.conceito }}</a></td>
+      <td><a href="/areas/{{ item['área médica'] }}">{{ item["área médica"] }}</a></td>
+      <td><a href="/conceitos/{{ item.conceito }}">{{ item.significado }}</a></td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+</table>
+</div>
+{% endblock %}

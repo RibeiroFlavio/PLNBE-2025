@@ -1,0 +1,108 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+  <title>Home</title>
+  <style>
+    .search-bar-container {
+      background-color: #fff194;
+      padding: 2rem 1rem 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-bar-form {
+      max-width: 600px;
+      width: 100%;
+      display: flex;
+      gap: 10px;
+    }
+
+    .search-bar-form input[type="text"] {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .search-bar-form button {
+      padding: 0.5rem 1.2rem;
+      border-radius: 5px;
+      background-color: #78ff71;
+      color: black;
+      font-weight: bold;
+      border: none;
+    }
+
+    .search-bar-form button:hover {
+      background-color: #65dd60;
+    }
+
+    .result-container {
+      max-width: 900px;
+      margin: 1rem auto 2rem;
+      background-color: #f8cded;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      border: 2px solid #030305;
+    }
+
+    .result-container h5 {
+      color: #90abff;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-container p {
+      margin-bottom: 0.3rem;
+    }
+
+    .highlight {
+      background-color: #ffff99;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+<div class="search-bar-container">
+  <form class="search-bar-form" action="/pesquisa" method="get">
+    <input type="text" name="query" placeholder="Pesquisar conceito..." value="{{ query or '' }}" required>
+    <button type="submit">Pesquisar</button>
+  </form>
+</div>
+
+{% if conceitos %}
+  <div class="container">
+    {% for conceito in conceitos %}
+      <div class="result-container">
+        {% for chave, valor in conceito.items() %}
+          {% if valor is string %}
+            <p><strong>{{ chave }}:</strong> {{ valor | safe }}</p>
+          {% elif valor is iterable %}
+            <p><strong>{{ chave }}:</strong> {{ valor | join(', ') | safe }}</p>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+{% elif query %}
+  <div class="container text-center mt-4">
+    <p>Nenhum resultado encontrado para <strong>{{ query }}</strong>.</p>
+  </div>
+{% endif %}
+
+<section class="d-flex align-items-center" style="min-height: 82vh; background-color: #fff194;">
+  <div class="container px-5 py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-3" style="color: #78ff71;">Dicionário Médico</h1>
+        <p class="lead mb-4">
+          Este dicionário (TP2) foi desenvolvido na cadeira de Processamento de Linguagem Natural em Engenharia Biomédica, no ramo de Informática Médica, com o objetivo de aplicar os conceitos adquiridos durante o ano 24/25.
+        </p>
+      </div>
+      <div class="col-lg-6 text-center">
+        <img src="/static/images/ENG-EN.png" class="img-fluid" alt="Logo" style="max-height: 300px;">
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

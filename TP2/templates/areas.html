@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+  <title>Áreas Médicas</title>
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      background-color: #fae57a !important;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #fae57a;
+    }
+
+    .container-areas {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #fae57a;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h2 {
+      text-align: center;
+      color: #78ff71 !important;
+      margin-bottom: 2rem;
+      font-weight: bold;
+      text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    }
+
+    .list-group {
+      background-color: transparent;
+    }
+
+    a.list-group-item {
+      display: block;
+      background-color: #f8cded !important;
+      color: #90abff;
+      font-weight: bold;
+      padding: 0.75rem;
+      border-top: 1px solid #030305 !important;
+      border-left: 1px solid #030305 !important;
+      border-right: 1px solid #030305 !important;
+      text-align: center;
+      text-decoration: none !important;
+    }
+
+    a.list-group-item:last-child {
+      border-bottom: 1px solid #030305 !important;
+    }
+
+    a.list-group-item:hover {
+      background-color: #dbe8ff !important;
+      text-decoration: none !important;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+  <div class="container-areas">
+    <h2>Áreas Médicas</h2>
+    <ul class="list-group" style="margin-top: 90px;">
+      {% for area in areas %}
+        <a href="/areas/{{ area }}" class="list-group-item">
+          {{ area }}
+        </a>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>Adicionar Conceito</title>
+<style>
+  html, body {
+    background-color: #fae57a !important;
+    height: 100%;
+    margin: 0;
+  }
+
+  .form-container {
+    background-color: #fae57a;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+  }
+
+  h2 {
+    color: #78ff71 !important;
+    text-align: center;
+    text-shadow:
+      -1px -1px 0 #000,
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000;
+    margin-bottom: 2rem;
+  }
+
+  .form-label {
+    font-weight: bold;
+  }
+
+  .btn-voltar {
+    background-color: #90abff !important;
+    border: none;
+    color: white !important;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .btn-voltar:hover {
+    background-color: #6f8fdd !important;
+  }
+
+  .translation-pair {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .translation-pair input[type="text"] {
+    flex: 1;
+  }
+
+  .translation-pair .lang {
+    max-width: 100px;
+  }
+
+  .btn-danger {
+  background-color: #e74c3c !important;
+  border: none;
+  color: white;
+  padding: 0.5rem 1.5rem;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b !important;
+}
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="form-container">
+  <h2>Adicionar Novo Conceito</h2>
+
+  {% if erro %}
+    <script>alert("{{ erro }}");</script>
+  {% endif %}
+
+  <form action="/conceitos" method="POST">
+
+    <div class="mb-3">
+      <label class="form-label">Conceito</label>
+      <input type="text" class="form-control" name="conceito">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Significado</label>
+      <textarea class="form-control" name="significado"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Significado Enciclopédico</label>
+      <textarea class="form-control" name="significado_enciclopédico"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contexto</label>
+      <textarea class="form-control" name="contexto"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Definição Catalã</label>
+      <input type="text" class="form-control" name="definicao catalã">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Área Médica</label>
+      <input type="text" class="form-control" name="área médica">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Código CA</label>
+      <input type="text" class="form-control" name="ca">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Sinónimos PT (separados por vírgula)</label>
+      <input type="text" class="form-control" name="sinónimos pt">
+    </div>
+
+    <label class="form-label">Traduções</label>
+    <div class="translation-pair">
+      <input type="text" class="form-control lang" name="trad_lang_1" placeholder="ex: en">
+      <input type="text" class="form-control" name="trad_val_1" placeholder="tradução em inglês">
+    </div>
+    <div class="translation-pair">
+      <input type="text" class="form-control lang" name="trad_lang_2" placeholder="ex: es">
+      <input type="text" class="form-control" name="trad_val_2" placeholder="tradução em espanhol">
+    </div>
+    <div class="translation-pair">
+      <input type="text" class="form-control lang" name="trad_lang_3" placeholder="ex: ar">
+      <input type="text" class="form-control" name="trad_val_3" placeholder="tradução em árabe">
+    </div>
+
+    <div class="text-center mt-4 d-flex justify-content-center gap-3">
+  <button type="button" class="btn btn-voltar" onclick="adicionar_conceito(this.form)">Guardar Conceito</button>
+
+
+  <a href="/conceitos/" class="btn btn-danger">Cancelar</a>
+</div>
+  </form>
+</div>
+{% endblock %}

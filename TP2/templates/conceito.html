@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>{{ conceito.conceito }}</title>
+<style>
+  .card {
+    background-color: #fae57a !important;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 2rem 1rem;
+    flex-grow: 1;
+    min-height: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .card-body {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+  }
+
+  .btn-voltar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #90abff !important;
+    border: none;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    font-weight: bold;
+  }
+
+  .btn-editar,
+  .btn-apagar {
+    min-width: 180px !important;
+    padding: 0.5rem 1.5rem !important;
+    font-size: 1rem !important;
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 5px !important;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-editar {
+    background-color: #90abff !important;
+    color: white !important;
+  }
+
+  .btn-editar:hover {
+    background-color: #6f8fdd !important;
+  }
+
+  .btn-apagar {
+    background-color: #e02d19 !important;
+    color: white !important;
+  }
+
+  .btn-apagar:hover {
+    background-color: #c0392b !important;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="card border-light mb-3">
+  <div class="card-body">
+
+    <a href="/conceitos" class="btn btn-primary btn-voltar">Voltar</a>
+
+    <div class="text-center">
+      <h5 class="card-title" style="color: #78ff71">{{ conceito.conceito }}</h5>
+      <h6 class="card-subtitle mb-4 text-body-secondary">
+        {{ conceito["sinónimos pt"] | join(", ") }}
+      </h6>
+      <div class="mb-4">
+        {% for key, value in conceito.items() %}
+          {% if key|length == 2 and key.isalpha() and value %}
+            {% if value is string %}
+              <span class="badge bg-secondary me-1">{{ key|upper }}: {{ value }}</span>
+            {% elif value is iterable %}
+              <span class="badge bg-secondary me-1">{{ key|upper }}: {{ value | join(", ") }}</span>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if conceito.get("significado") %}
+      <p class="card-text"><a style="color: #90abff">Definição: </a>{{ conceito["significado"] }}</p>
+    {% endif %}
+
+    {% if conceito.get("significado_enciclopédico") %}
+      <p class="card-text"><a style="color: #90abff">Definição Enciclopédica: </a>{{ conceito["significado_enciclopédico"] }}</p>
+    {% endif %}
+
+    {% if conceito.get("contexto") %}
+      <p class="card-text"><a style="color: #fa7a89">Contextualização: </a>{{ conceito.contexto }}</p>
+    {% endif %}
+
+    {% if conceito.get("definicao catalã") %}
+      <p class="card-text"><a style="color: #90abff">Definição Catalã: </a>{{ conceito["definicao catalã"] }}</p>
+    {% endif %}
+
+    {% if conceito.get("área médica") %}
+      <p class="card-text">
+        <a style="color: #90abff">Área Médica: </a>
+        <a href="/areas/{{ conceito['área médica'] }}" style="color: #78ff71; text-decoration: none;">
+          {{ conceito["área médica"] }}
+        </a>
+      </p>
+    {% endif %}
+
+    <div class="d-flex justify-content-center gap-3 mt-5">
+      <a href="/conceitos/{{ designacao }}/editar" class="btn btn-editar">Editar Conceito</a>
+
+      <a type="button" onclick="delete_conceito('{{designacao}}')" class="btn btn-apagar">Apagar Conceito</a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
